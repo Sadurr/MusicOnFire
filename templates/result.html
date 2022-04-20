@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <title>Results</title>
+</head>
+<body>
+        <div class="back">
+            <button class="input button"><a href="{{ url_for('home') }}">back</a></button>
+        </div>
+    
+    <table>
+        <tr>
+            <th>Band</th>
+            <th>Album</th>
+            <th>Genre</th>
+            <th>Description</th>
+        </tr> 
+        <tr>
+            <td>{{band[0]}}</td>
+            <td>{{album[0]}}</td>
+            <td>{{genre[0]}}</td>
+            <td>{{description[0]}}</td>
+        </tr>
+
+        <tr>
+            <td>{{band[1]}}</td>
+            <td>{{album[1]}}</td>
+            <td>{{genre[1]}}</td>
+            <td>{{description[1]}}</td>
+        </tr>
+
+        <tr>
+            <td>{{band[2]}}</td>
+            <td>{{album[2]}}</td>
+            <td>{{genre[2]}}</td>
+            <td>{{description[2]}}</td>
+        </tr>
+
+        <tr>
+            <td>{{band[3]}}</td>
+            <td>{{album[3]}}</td>
+            <td>{{genre[3]}}</td>
+            <td>{{description[3]}}</td>
+        </tr>
+
+        <tr>
+            <td>{{band[4]}}</td>
+            <td>{{album[4]}}</td>
+            <td>{{genre[4]}}</td>
+            <td>{{description[4]}}</td>
+        </tr>
+    </table>
+
+    <!-- <footer> -->
+
+<div class="gallery_options center">
+
+    <div class="gallery">
+        <img src="{{ url_for('static', filename='/images/' + cover_photo[0]) }}" width="600" height="400" class="images"> 
+        <!-- <div class="desc"> {{recommended_band[0]}}  </div>
+        <div class="desc"> {{recommended_album[0]}} </div> -->
+        <div class="desc"> {{recommended_band[0]}}</div>
+        <div class="desc"> {{recommended_album[0]}}</div>
+    </div>
+      
+    <div class="gallery">
+        <img src="{{ url_for('static', filename='/images/' + cover_photo[1]) }}" width="600" height="400" class="images"> 
+        <div class="desc"> {{recommended_band[1]}}  </div>
+        <div class="desc"> {{recommended_album[1]}} </div>
+    </div>
+      
+    <div class="gallery">
+        <img src="{{ url_for('static', filename='/images/' + cover_photo[2]) }}" width="600" height="400" class="images"> 
+        <div class="desc"> {{recommended_band[2]}}  </div>
+        <div class="desc"> {{recommended_album[2]}} </div>
+    </div>
+      
+    <div class="gallery">
+        <img src="{{ url_for('static', filename='/images/' + cover_photo[3]) }}" width="600" height="400" class="images"> 
+        <div class="desc"> {{recommended_band[3]}}  </div>
+        <div class="desc"> {{recommended_album[3]}} </div>
+    </div>
+
+    <div class="gallery">
+        <img src="{{ url_for('static', filename='/images/' + cover_photo[4]) }}" width="600" height="400" class="images"> 
+        <div class="desc"> {{recommended_band[4]}}  </div>
+        <div class="desc"> {{recommended_album[4]}} </div>
+    </div>
+
+</div>
+
+</body>
+</html>
