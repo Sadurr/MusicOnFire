@@ -50,7 +50,7 @@ def musicadd():
         entry = MusicOnFire(band, album, genre, description)
         db.session.add(entry)
         db.session.commit()
-        db.session.close() #added test
+        db.session.close() 
 
     return render_template("index.html")
 
@@ -66,11 +66,10 @@ def musicsearch():
     output_recommended_bands = [ ]
     output_recommended_albums = [ ]
 
-    # try: 
     if inputType == "band":
         bands = db.session.query(MusicOnFire.band).filter_by(band=inputForQuery).all()
-        for band1 in bands:
-            output_bands.append(band1.band)
+        for band in bands:
+            output_bands.append(band.band)
 
         albums = db.session.query(MusicOnFire.album).filter_by(band=inputForQuery).all()
         for album in albums:
@@ -168,26 +167,26 @@ def musicsearch():
             for recommended_band in recommended_bands:
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)  
+        elif "sad" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="anxious").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="anxious").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album) 
+        elif "anxious" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="sad").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="sad").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
                 output_recommended_albums.append(recommended_album.album)        
         # else:
         #    recommended_band =  ["Not found","Not found","Not found","Not found","Not found"]
         #    recommended_album = ["Not found","Not found","Not found","Not found","Not found"]
         #    cover_photo = 'error.jpg'   
     elif inputType == 'genre':
-        if inputForQuery == "Jazz":
-            # bands =  db.session.query(MusicOnFire.band).filter(MusicOnFire.genre=="Avant-Garde Jazz", MusicOnFire.genre=="Jazz Fusion", MusicOnFire.genre=="Modal Jazz").all() 
-            bands = db.session.query(MusicOnFire.band).filter_by(genre="Avant-Garde Jazz").all()
-            albums = db.session.query(MusicOnFire.album).filter_by(genre="Avant-Garde Jazz").all()
-            genres =  db.session.query(MusicOnFire.genre).filter_by(genre="Avant-Garde Jazz").all()
-            descriptions = db.session.query(MusicOnFire.description).filter_by(genre="Avant-Garde Jazz").all()
-            for band in bands:  
-                output_bands.append(band.band)
-            for album in albums:
-                output_albums.append(album.album)
-            for genre in genres:
-                output_genres.append(genre.genre)
-            for description in descriptions:
-                output_descriptions.append(description.description)    
 
         bands = db.session.query(MusicOnFire.band).filter_by(genre=inputForQuery).all()
         for band1 in bands:
@@ -204,6 +203,212 @@ def musicsearch():
         descriptions =  db.session.query(MusicOnFire.description).filter_by(genre=inputForQuery).all()
         for description in descriptions:
             output_descriptions.append(description.description)
+
+        if  inputForQuery == "Jazz" or  inputForQuery == 'jazz' or  inputForQuery == 'JAZZ':
+            bands = db.session.query(MusicOnFire.band).filter_by(genre="Avant-Garde Jazz").all()
+            bands2 = db.session.query(MusicOnFire.band).filter_by(genre="Chamber Jazz").all() 
+            bands3 = db.session.query(MusicOnFire.band).filter_by(genre="Jazz Fusion").all() 
+            albums = db.session.query(MusicOnFire.album).filter_by(genre="Avant-Garde Jazz").all()
+            albums2 = db.session.query(MusicOnFire.album).filter_by(genre="Chamber Jazz").all()
+            albums3 = db.session.query(MusicOnFire.album).filter_by(genre="Jazz Fusion").all()
+            genres =  db.session.query(MusicOnFire.genre).filter_by(genre="Avant-Garde Jazz").all()
+            genres2 =  db.session.query(MusicOnFire.genre).filter_by(genre="Chamber Jazz").all()
+            genres3 =  db.session.query(MusicOnFire.genre).filter_by(genre="Jazz Fusion").all()
+            descriptions = db.session.query(MusicOnFire.description).filter_by(genre="Avant-Garde Jazz").all()
+            descriptions2 = db.session.query(MusicOnFire.description).filter_by(genre="Chamber Jazz").all()
+            descriptions3 = db.session.query(MusicOnFire.description).filter_by(genre="Jazz Fusion").all()
+            for band in bands:  
+                output_bands.append(band.band)
+            for band2 in bands2:  
+                output_bands.append(band2.band)
+            for band3 in bands3:  
+                output_bands.append(band3.band)
+            for album in albums:
+                output_albums.append(album.album)
+            for album2 in albums2:
+                output_albums.append(album2.album)
+            for album3 in albums3:
+                output_albums.append(album3.album)
+            for genre in genres:
+                output_genres.append(genre.genre)
+            for genre2 in genres2:
+                output_genres.append(genre2.genre)
+            for genre3 in genres3:
+                output_genres.append(genre3.genre)
+            for description in descriptions:
+                output_descriptions.append(description.description) 
+            for description2 in descriptions2:
+                output_descriptions.append(description2.description)
+            for description3 in descriptions3:
+                output_descriptions.append(description3.description) 
+        elif inputForQuery ==  "Rock" or  inputForQuery == 'rock' or  inputForQuery == 'ROCK':
+            bands2 = db.session.query(MusicOnFire.band).filter_by(genre="Hard Rock").all()
+            bands = db.session.query(MusicOnFire.band).filter_by(genre="Art Rock").all()
+            albums2 = db.session.query(MusicOnFire.album).filter_by(genre="Hard Rock").all()
+            albums = db.session.query(MusicOnFire.album).filter_by(genre="Art Rock").all()
+            genres2 =  db.session.query(MusicOnFire.genre).filter_by(genre="Hard Rock").all()
+            genres =  db.session.query(MusicOnFire.genre).filter_by(genre="Art Rock").all()
+            descriptions2 = db.session.query(MusicOnFire.description).filter_by(genre="Hard Rock").all()
+            descriptions = db.session.query(MusicOnFire.description).filter_by(genre="Art Rock").all()
+            for band2 in bands2:
+                output_bands.append(band2.band)
+            for band in bands:  
+                output_bands.append(band.band)
+            for album2 in albums2:
+                output_albums.append(album2.album)
+            for album in albums:
+                output_albums.append(album.album)
+            for genre2 in genres2:
+                output_genres.append(genre2.genre)
+            for genre in genres:
+                output_genres.append(genre.genre)
+            for description2 in descriptions2:
+                output_descriptions.append(description2.description)  
+            for description in descriptions:
+                output_descriptions.append(description.description)   
+        elif inputForQuery ==  "Hip hop" or  inputForQuery == 'Hip-hop' or  inputForQuery == 'Hip Hop' or inputForQuery == 'Hip-Hop' or  inputForQuery == 'hip hop' or inputForQuery == 'hip-hop' or inputForQuery == 'HIP HOP' or  inputForQuery == 'Rap' or inputForQuery == 'rap':
+            bands = db.session.query(MusicOnFire.band).filter_by(genre="East Coast Hip Hop").all()
+            bands2 = db.session.query(MusicOnFire.band).filter_by(genre="Experimental Hip Hop").all() 
+            bands3 = db.session.query(MusicOnFire.band).filter_by(genre="Southern Hip Hop").all() 
+            albums = db.session.query(MusicOnFire.album).filter_by(genre="East Coast Hip Hop").all()
+            albums2 = db.session.query(MusicOnFire.album).filter_by(genre="Experimental Hip Hop").all()
+            albums3 = db.session.query(MusicOnFire.album).filter_by(genre="Southern Hip Hop").all()
+            genres =  db.session.query(MusicOnFire.genre).filter_by(genre="East Coast Hip Hop").all()
+            genres2 =  db.session.query(MusicOnFire.genre).filter_by(genre="Experimental Hip Hop").all()
+            genres3 =  db.session.query(MusicOnFire.genre).filter_by(genre="Southern Hip Hop").all()
+            descriptions = db.session.query(MusicOnFire.description).filter_by(genre="East Coast Hip Hop").all()
+            descriptions2 = db.session.query(MusicOnFire.description).filter_by(genre="Experimental Hip Hop").all()
+            descriptions3 = db.session.query(MusicOnFire.description).filter_by(genre="Southern Hip Hop").all()
+            for band in bands:  
+                output_bands.append(band.band)
+            for band2 in bands2:  
+                output_bands.append(band2.band)
+            for band3 in bands3:  
+                output_bands.append(band3.band)
+            for album in albums:
+                output_albums.append(album.album)
+            for album2 in albums2:
+                output_albums.append(album2.album)
+            for album3 in albums3:
+                output_albums.append(album3.album)
+            for genre in genres:
+                output_genres.append(genre.genre)
+            for genre2 in genres2:
+                output_genres.append(genre2.genre)
+            for genre3 in genres3:
+                output_genres.append(genre3.genre)
+            for description in descriptions:
+                output_descriptions.append(description.description) 
+            for description2 in descriptions2:
+                output_descriptions.append(description2.description)
+            for description3 in descriptions3:
+                output_descriptions.append(description3.description) 
+        elif inputForQuery ==  "Dance" or  inputForQuery == 'dance' or  inputForQuery == 'DANCE' or  inputForQuery == 'Disco' or  inputForQuery == 'disco' or inputForQuery == 'DISCO':
+            bands2 = db.session.query(MusicOnFire.band).filter_by(genre="Dance-Punk").all() 
+            bands = db.session.query(MusicOnFire.band).filter_by(genre="French House").all()
+            bands3 = db.session.query(MusicOnFire.band).filter_by(genre="Disco").all()
+            albums2 = db.session.query(MusicOnFire.album).filter_by(genre="Dance-Punk").all()
+            albums = db.session.query(MusicOnFire.album).filter_by(genre="French House").all()
+            albums3 = db.session.query(MusicOnFire.album).filter_by(genre="Disco").all()
+            genres2 =  db.session.query(MusicOnFire.genre).filter_by(genre="Dance-Punk").all()
+            genres =  db.session.query(MusicOnFire.genre).filter_by(genre="French House").all()
+            genres3 =  db.session.query(MusicOnFire.genre).filter_by(genre="Disco").all()
+            descriptions2 = db.session.query(MusicOnFire.description).filter_by(genre="Dance-Punk").all()
+            descriptions = db.session.query(MusicOnFire.description).filter_by(genre="French House").all()
+            descriptions3 = db.session.query(MusicOnFire.description).filter_by(genre="Disco").all()
+            for band2 in bands2:
+                output_bands.append(band2.band)
+            for band in bands:  
+                output_bands.append(band.band)
+            for band3 in bands3:  
+                output_bands.append(band.band)
+            for album2 in albums2:
+                output_albums.append(album2.album)
+            for album in albums:
+                output_albums.append(album.album)
+            for album3 in albums3:
+                output_albums.append(album3.album)
+            for genre2 in genres2:
+                output_genres.append(genre2.genre)
+            for genre in genres:
+                output_genres.append(genre.genre)
+            for genre3 in genres3:
+                output_genres.append(genre3.genre)
+            for description2 in descriptions2:
+                output_descriptions.append(description2.description)  
+            for description in descriptions:
+                output_descriptions.append(description.description)
+            for description3 in descriptions3:
+                output_descriptions.append(description3.description)   
+        elif inputForQuery ==  "Metal" or  inputForQuery == 'metal' or  inputForQuery == 'METAL':
+            bands2 = db.session.query(MusicOnFire.band).filter_by(genre="War Metal").all()
+            bands = db.session.query(MusicOnFire.band).filter_by(genre="Thrash Metal").all()
+            albums2 = db.session.query(MusicOnFire.album).filter_by(genre="War Metal").all()
+            albums = db.session.query(MusicOnFire.album).filter_by(genre="Thrash Metal").all()
+            genres2 =  db.session.query(MusicOnFire.genre).filter_by(genre="War Metal").all()
+            genres =  db.session.query(MusicOnFire.genre).filter_by(genre="Thrash Metal").all()
+            descriptions2 = db.session.query(MusicOnFire.description).filter_by(genre="War Metal").all()
+            descriptions = db.session.query(MusicOnFire.description).filter_by(genre="Thrash Metal").all()
+            for band2 in bands2:
+                output_bands.append(band2.band)
+            for band in bands:  
+                output_bands.append(band.band)
+            for album2 in albums2:
+                output_albums.append(album2.album)
+            for album in albums:
+                output_albums.append(album.album)
+            for genre2 in genres2:
+                output_genres.append(genre2.genre)
+            for genre in genres:
+                output_genres.append(genre.genre)
+            for description2 in descriptions2:
+                output_descriptions.append(description2.description)  
+            for description in descriptions:
+                output_descriptions.append(description.description) 
+
+        elif inputForQuery ==  "Pop" or  inputForQuery == 'pop' or  inputForQuery == 'POP':
+            bands = db.session.query(MusicOnFire.band).filter_by(genre="Chamber Pop").all()
+            bands2 = db.session.query(MusicOnFire.band).filter_by(genre="Art Pop").all()
+            albums = db.session.query(MusicOnFire.album).filter_by(genre="Chamber Pop").all()
+            albums2 = db.session.query(MusicOnFire.album).filter_by(genre="Art Pop").all()
+            genres =  db.session.query(MusicOnFire.genre).filter_by(genre="Chamber Pop").all()
+            genres2 =  db.session.query(MusicOnFire.genre).filter_by(genre="Art Pop").all()
+            descriptions = db.session.query(MusicOnFire.description).filter_by(genre="Chamber Pop").all()
+            descriptions2 = db.session.query(MusicOnFire.description).filter_by(genre="Art Pop").all()
+            for band2 in bands2:
+                output_bands.append(band2.band)
+            for band in bands:  
+                output_bands.append(band.band)
+            for album2 in albums2:
+                output_albums.append(album2.album)
+            for album in albums:
+                output_albums.append(album.album)
+            for genre2 in genres2:
+                output_genres.append(genre2.genre)
+            for genre in genres:
+                output_genres.append(genre.genre)
+            for description2 in descriptions2:
+                output_descriptions.append(description2.description)  
+            for description in descriptions:
+                output_descriptions.append(description.description)     
+        
+
+        # bands = db.session.query(MusicOnFire.band).filter_by(genre=inputForQuery).all()
+        # for band1 in bands:
+        #     output_bands.append(band1.band)
+
+        # albums = db.session.query(MusicOnFire.album).filter_by(genre=inputForQuery).all()
+        # for album in albums:
+        #     output_albums.append(album.album)
+
+        # genres = db.session.query(MusicOnFire.genre).filter_by(genre=inputForQuery).all()
+        # for genre in genres:
+        #     output_genres.append(genre.genre)
+
+        # descriptions =  db.session.query(MusicOnFire.description).filter_by(genre=inputForQuery).all()
+        # for description in descriptions:
+        #     output_descriptions.append(description.description)
+        # else:
         if "Art Pop" in output_genres:
             recommended_bands =  db.session.query(MusicOnFire.band).filter(MusicOnFire.genre=="Art Rock", MusicOnFire.recommended=="true").all()  #and recommended = True
             recommended_albums = db.session.query(MusicOnFire.album).filter(MusicOnFire.genre=="Art Rock", MusicOnFire.recommended=="true").all()
@@ -211,6 +416,7 @@ def musicsearch():
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
                 output_recommended_albums.append(recommended_album.album)
+                
         if "happy" in output_descriptions: 
             recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="calm").all()  #and recommended = True
             recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="calm").all() 
@@ -294,7 +500,21 @@ def musicsearch():
             for recommended_band in recommended_bands:
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
-                output_recommended_albums.append(recommended_album.album)  
+                output_recommended_albums.append(recommended_album.album) 
+        elif "sad" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="anxious").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="anxious").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album) 
+        elif "anxious" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="sad").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="sad").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)   
     elif inputType == 'description':
         bands = db.session.query(MusicOnFire.band).filter_by(description=inputForQuery).all()
         for band1 in bands:
@@ -391,6 +611,20 @@ def musicsearch():
         elif "progressive" in output_descriptions:
             recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="melodic").all() 
             recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="melodic").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)  
+        elif "sad" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="anxious").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="anxious").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album) 
+        elif "anxious" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="sad").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="sad").all() 
             for recommended_band in recommended_bands:
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
@@ -739,8 +973,48 @@ def musicsearch():
             elif output_recommended_albums[i] == "Low":
                 cover_photo = "low.jpg"
                 cover_photos.append(cover_photo)
-                break            
-        
+                break  
+            elif output_recommended_albums[i] == "Illmatic":
+                cover_photo = "illmatic.jpg"
+                cover_photos.append(cover_photo)
+                break  
+            elif output_recommended_albums[i] == "Trick Dice":
+                cover_photo = "trick-dice.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Spiderland":
+                cover_photo = "spiderland.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "The Money Store":
+                cover_photo = "the-money-store.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Soundtracks for the Blind":
+                cover_photo = "soundtracks-for-the-blind.jpg"
+                cover_photos.append(cover_photo)
+                break 
+            elif output_recommended_albums[i] == "Nevermind":
+                cover_photo = "nevermind.jpg"
+                cover_photos.append(cover_photo)
+                break    
+            elif output_recommended_albums[i] == "In utero":
+                cover_photo = "in-utero.jpg"
+                cover_photos.append(cover_photo)
+                break     
+            elif output_recommended_albums[i] == "The Velvet Underground & Nico":
+                cover_photo = "the-velvet-underground-and-nico.jpg"
+                cover_photos.append(cover_photo)
+                break    
+            elif output_recommended_albums[i] == "Bringing It All Back Home":
+                cover_photo = "bringing-it-all-back-home.jpg"
+                cover_photos.append(cover_photo)
+                break   
+            elif output_recommended_albums[i] == "In the Court of the Crimson King":
+                cover_photo = "in-the-court-of-the-crimson-king.jpg"
+                cover_photos.append(cover_photo)
+                break          
+                        
             else:
                 cover_photo = "no_image.jpg"
                 cover_photos.append(cover_photo)
@@ -748,7 +1022,6 @@ def musicsearch():
         # else:
         #     continue
         # break
-
     return render_template("result.html",
      band = output_bands, album=output_albums, genre=output_genres, description=output_descriptions, cover_photo=cover_photos,
     recommended_band=output_recommended_bands, recommended_album=output_recommended_albums)
