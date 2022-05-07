@@ -154,9 +154,16 @@ def musicsearch():
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
                 output_recommended_albums.append(recommended_album.album)
-        elif "melodic" in output_descriptions: #tutaj cos zmienic
-            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="progressive").all() 
-            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="progressive").all() 
+        elif "melodic" in output_descriptions: 
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="passionate").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="passionate").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)
+        elif "passionate" in output_descriptions: 
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="melodic").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="melodic").all() 
             for recommended_band in recommended_bands:
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
@@ -181,11 +188,22 @@ def musicsearch():
             for recommended_band in recommended_bands:
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)
+        elif "urban" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="crime").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="crime").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)
+        elif "crime" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="urban").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="urban").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
                 output_recommended_albums.append(recommended_album.album)        
-        # else:
-        #    recommended_band =  ["Not found","Not found","Not found","Not found","Not found"]
-        #    recommended_album = ["Not found","Not found","Not found","Not found","Not found"]
-        #    cover_photo = 'error.jpg'   
+ 
     elif inputType == 'genre':
 
         bands = db.session.query(MusicOnFire.band).filter_by(genre=inputForQuery).all()
@@ -602,8 +620,15 @@ def musicsearch():
             for recommended_album in recommended_albums:
                 output_recommended_albums.append(recommended_album.album)
         elif "melodic" in output_descriptions: #tutaj cos zmienic
-            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="progressive").all() 
-            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="progressive").all() 
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="passionate").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="passionate").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)
+        elif "passionate" in output_descriptions: 
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="melodic").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="melodic").all() 
             for recommended_band in recommended_bands:
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
@@ -629,6 +654,20 @@ def musicsearch():
                 output_recommended_bands.append(recommended_band.band)                
             for recommended_album in recommended_albums:
                 output_recommended_albums.append(recommended_album.album)  
+        elif "urban" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="crime").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="crime").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)
+        elif "crime" in output_descriptions:
+            recommended_bands =  db.session.query(MusicOnFire.band).filter_by(description="urban").all() 
+            recommended_albums = db.session.query(MusicOnFire.album).filter_by(description="urban").all() 
+            for recommended_band in recommended_bands:
+                output_recommended_bands.append(recommended_band.band)                
+            for recommended_album in recommended_albums:
+                output_recommended_albums.append(recommended_album.album)   
 
     cover_photos = [ ]
 
@@ -979,7 +1018,7 @@ def musicsearch():
                 cover_photos.append(cover_photo)
                 break  
             elif output_recommended_albums[i] == "Trick Dice":
-                cover_photo = "trick-dice.jpg"
+                cover_photo = "trick_dice.jpg"
                 cover_photos.append(cover_photo)
                 break
             elif output_recommended_albums[i] == "Spiderland":
@@ -1013,7 +1052,73 @@ def musicsearch():
             elif output_recommended_albums[i] == "In the Court of the Crimson King":
                 cover_photo = "in-the-court-of-the-crimson-king.jpg"
                 cover_photos.append(cover_photo)
+                break  
+            elif output_recommended_albums[i] == "Hot Rats":
+                cover_photo = "hot-rats.jpg"
+                cover_photos.append(cover_photo)
                 break          
+            elif output_recommended_albums[i] == "The Rise and Fall of Ziggy Stardust and the Spiders From Mars":
+                cover_photo = "the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Station to Station":
+                cover_photo = "station-to-station.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "The Black Saint and the Sinner Lady":
+                cover_photo = "the-black-saint-and-the-sinner-lady.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Mingus Ah Um":
+                cover_photo = "mingus-ah-um.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Ants From Up There":
+                cover_photo = "ants-from-up-there.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "To Pimp a Butterfly":
+                cover_photo = "to-pimp-a-butterfly.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Madvillainy":
+                cover_photo = "madvillainy.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "good kid, m.A.A.d city":
+                cover_photo = "good-kid-m_a_a_d-city.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Enter the Wu-Tang":
+                cover_photo = "enter-the-wu-tang.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Daytona":
+                cover_photo = "daytona.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Kinematografia":
+                cover_photo = "kinematografia.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "W 63 minuty dookoła świata":
+                cover_photo = "w-63-minuty-dookola-swiata.jpg"
+                cover_photos.append(cover_photo)
+                break
+            elif output_recommended_albums[i] == "Some Rap Songs":
+                cover_photo = "some-rap-songs.jpg"
+                cover_photos.append(cover_photo)
+                break
+            
+            
+            
+            
+                    
+
+
+            
+            
+            
                         
             else:
                 cover_photo = "no_image.jpg"
